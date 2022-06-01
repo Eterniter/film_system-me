@@ -1,0 +1,53 @@
+{% extends 'film_base.html' %}
+{% block my_film_base_style %}
+<style>
+    .pl {
+        font: 18px Arial, Helvetica, sans-serif;
+        line-height: 150%;
+        color: #666666;
+    }
+
+    .pl:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+        color: black;
+    }
+
+    span.score {
+        background-color: #f57c00;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        left: auto;
+        font-size: 14px;
+        padding: 2px;
+        border-radius: 0 0 0 0;
+    }
+</style>
+{% endblock %}
+
+{% block my_film_base_body %}
+<h1 class="display-5">{{ film_name | safe }} <a href="https://film.douban.com/subject/{{film_id}}/" target="_blank"
+        class="badge badge-pill badge-warning">豆瓣:{{ score | safe }}</a></h1>
+<hr>
+<p class="h5">电影基本信息</p>
+<div><span class="pl">导演:{{ director | safe }}</span></div>
+<div><span class="pl">编剧:{{ screen_writer | safe }}</span></div>
+<div><span class="pl">主演:{{ starring | safe }}</span></div>
+<div><span class="pl">类型:{{ film_type | safe }}</span></div>
+<div><span class="pl">制片国家/地区:{{ film_producer | safe }}</span></div>
+<div><span class="pl">语言:{{ film_language | safe }}</span></div>
+<div><span class="pl">上映日期:{{ release_data | safe }}</span></div>
+<div><span class="pl">片长:{{ film_duration | safe }}</span></div>
+<div><span class="pl">剧情简介:{{ film_intro | safe }}</span></div>
+<hr>
+<p class="h5">相似电影</p>
+<div class="row" id="similarity_film">
+
+</div>
+{% endblock %}
+
+{% block my_film_base_script %}
+<script> var film_id = "{{ film_id }}"</script>
+<script src="/film_system-me/static/js/film_introduction.js"></script>
+{% endblock %}

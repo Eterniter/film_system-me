@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer" />
+    <link rel="stylesheet" href="/film_system-me/static/css/bootstrap-4.6.1.css" />
+    <link rel="stylesheet" href="/film_system-me/static/css/animate.css">
+    <link href="/film_system-me/static/images/film.svg" rel="icon" type="image/x-ico">
+    <title>电影信息采集与分析系统</title>
+</head>
+<style>
+    div.dropdown-menu>* {
+        cursor: pointer;
+    }
+
+    div.col-2 img:hover,
+    div.col-3 img:hover {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-duration: var(--animate-duration);
+        animation-duration: var(--animate-duration);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        animation-name: pulse;
+    }
+
+    div.navbar-nav .nav-link:hover {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-duration: var(--animate-duration);
+        animation-duration: var(--animate-duration);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        animation-name: tada;
+    }
+</style>
+
+{% block my_style %}
+<style>
+    html,
+    body,
+    .container {
+        height: 100%;
+    }
+
+    div.container>div.row>div.w-100 {
+        margin-top: 120px
+    }
+
+    #custom_recommendation {
+        margin-top: 20px;
+        margin-left: 120px;
+        margin-right: 120px;
+    }
+</style>
+{% endblock %}
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <a class="navbar-brand" href="#">
+                <svg t="1643648324056" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="2255" width="25" height="25">
+                    <path
+                        d="M512 85.333333c235.637333 0 426.666667 191.029333 426.666667 426.666667a432.554667 432.554667 0 0 1-4.490667 62.112 423.36 423.36 0 0 1-8.789333 43.914667l-0.458667 1.749333-0.330667 1.301333-1.418666 5.216a423.210667 423.210667 0 0 1-9.365334 29.546667l-1.066666 2.944a426.698667 426.698667 0 0 1-94.357334 150.154667c22.986667 3.082667 43.818667 10.837333 62.4 23.466666a32 32 0 1 1-35.957333 52.938667c-30.485333-20.714667-77.781333-18.965333-144.053333 9.386667a343.68 343.68 0 0 1-5.706667 2.773333l-1.834667 0.853333c-1.568 0.746667-3.136 1.472-4.704 2.186667l-0.874666 0.394667c-1.834667 0.832-3.68 1.653333-5.525334 2.453333l-0.778666 0.330667c-1.706667 0.746667-3.413333 1.472-5.12 2.197333-0.533333 0.202667-1.034667 0.416-1.546667 0.629333-3.658667 1.514667-7.349333 2.986667-11.061333 4.394667l-2.250667 0.832a278.826667 278.826667 0 0 1-3.914667 1.450667l-2.453333 0.874666c-1.6 0.576-3.232 1.152-4.853333 1.706667a322.752 322.752 0 0 1-6.08 2.026667l-1.941334 0.618666c-1.781333 0.576-3.573333 1.130667-5.365333 1.685334l-0.693333 0.202666c-1.717333 0.533333-3.445333 1.034667-5.173334 1.536l-2.101333 0.597334c-1.248 0.362667-2.485333 0.704-3.733333 1.045333l-3.082667 0.832c-1.173333 0.32-2.346667 0.629333-3.530667 0.928l-2.922666 0.736c-1.706667 0.426667-3.434667 0.853333-5.162667 1.258667l-1.173333 0.266666c-10.346667 2.410667-20.821333 4.448-31.424 6.08l-2.592 0.394667-0.746667 0.106667A426.250667 426.250667 0 0 1 512 938.666667C276.362667 938.666667 85.333333 747.637333 85.333333 512S276.362667 85.333333 512 85.333333z m0 522.666667a64 64 0 1 0 0 128 64 64 0 0 0 0-128z m160-160a64 64 0 1 0 0 128 64 64 0 0 0 0-128z m-320 0a64 64 0 1 0 0 128 64 64 0 0 0 0-128z m160-160a64 64 0 1 0 0 128 64 64 0 0 0 0-128z"
+                        p-id="2256"></path>
+                </svg>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-link " href="/index"><svg xmlns="http://www.w3.org/2000/svg" width="16px"
+                            height="16px" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+                            <path fill-rule="evenodd"
+                                d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
+                        </svg>
+                        首页
+                    </a>
+                    <a class="nav-link" href="/category?film_type=全部类型&film_producer=全部地区&current_page=1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-boxes" viewBox="0 0 16 16">
+                            <path
+                                d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                        </svg>
+                        分类
+                    </a>
+                    <a class="nav-link" href="/rank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bar-chart" viewBox="0 0 16 16">
+                            <path
+                                d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z" />
+                        </svg>
+                        榜单
+                    </a>
+                    <a class="nav-link" href="/preference">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-balloon-heart" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z" />
+                        </svg>
+                        偏好
+                    </a>
+                </div>
+                <button type="button" class="btn btn-outline-success my-2 mx-1 my-sm-0" data-toggle="modal"
+                    data-target="#login">
+                    登录
+                </button>
+                <button type="button" class="btn btn-outline-success my-2 mx-1 my-sm-0" data-toggle="modal"
+                    data-target="#register">
+                    注册
+                </button>
+            </div>
+        </nav>
+        <div class="row">
+            {% block my_body %}
+            <div class="w-100">
+                <form>
+                    <div class="row my-2 justify-content-center">
+                        <div class="col-5 p-0">
+                            <input id="input_search" class="form-control form-control-lg" type="search"
+                                placeholder="请输入电影名称" aria-label="Search">
+                        </div>
+                        <div class="col-2 p-0">
+                            <button id="btn_search" class="btn btn-outline-success btn-lg" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path
+                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                </svg>
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="custom_recommendation" class="row">
+                <div class="lead w-100">个性化推荐</div>
+                <hr class="w-100 m-0">
+            </div>
+            {% endblock %}
+
+        </div>
+    </div>
+    <div class="modal fade" id="login" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">登录</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="login_username">用户名</label>
+                            <input type="text" class="form-control" id="login_username" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="login_password">密 码</label>
+                            <input type="password" class="form-control" id="login_password" required>
+                            <div class="invalid-feedback">
+                                用户名或密码错误
+                            </div>
+                        </div>
+                        <div class="btn btn-primary" id="login_button">登录</div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="register" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">注册</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="login_username">用户名</label>
+                            <input type="text" class="form-control" id="register_username" required>
+                            <small>4-12位字母或数字的组合</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="login_password">密 码</label>
+                            <input type="text" class="form-control" id="register_password" required>
+                            <small>6-12位字母或数字的组合</small>
+                        </div>
+                        <div class="btn btn-primary" id="register_button">注册</div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/film_system-me/static/js/jquery.js"></script>
+<script src="/film_system-me/static/js/bootstrap-4.6.1.bundle.js"></script>
+<script src="/film_system-me/static/js/login.js"></script>
+{% block my_script %}
+<script src="/film_system-me/static/js/index.js"></script>
+{% endblock %}
+
+</html>

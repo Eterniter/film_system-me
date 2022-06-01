@@ -1,0 +1,34 @@
+{% extends 'index.html' %}
+{% block my_style %}
+<style>
+
+</style>
+{% endblock %}
+
+{% block my_body %}
+<div class="row">
+    <div class="col-6">
+        <div id="short_comment_num_rank" class="row">
+        </div>
+    </div>
+    <div class="col-6">
+        <div id="question_num_rank" class="row">
+        </div>
+    </div>
+    <div class="col-6">
+        <div id="score_rank" class="row">
+        </div>
+    </div>
+    <div class="col-6">
+        <div id="topic_num_rank" class="row">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block my_script %}
+<script>
+    var data_json = {{ data_json | tojson }}
+</script>
+<script src="/film_system-me/static/js/rank.js"></script>
+{% endblock %}

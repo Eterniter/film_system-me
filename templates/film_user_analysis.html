@@ -1,0 +1,65 @@
+{% extends 'film_base.html' %}
+{% block my_film_base_style %}
+<style>
+    .film_user_info {
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-6 {
+        height: 500px;
+        width: 50%;
+    }
+
+    #film_user_residence {
+        height: 100%;
+        width: 100%;
+    }
+
+    #film_user_register_time {
+        height: 300px;
+        width: 100%;
+    }
+
+
+    p.lead {
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+{% block my_film_base_body %}
+<div class="row film_user_info">
+    <div class="col-6">
+        <p class="lead">影评用户常居地分布</p>
+        <div style="height: 89%;" class="overflow-auto">
+            <table class="table table-striped table-bordered table-hover table-sm"
+                aria-describedby="Distribution of the frequent residence of film review users">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">省(直辖市)</th>
+                        <th scope="col">用户人数</th>
+                        <th scope="col">比例</th>
+                    </tr>
+                </thead>
+                <tbody id="film_user_residence_table">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-6">
+        <div id="film_user_residence"></div>
+    </div>
+    <div class="w-100">
+        <div id="film_user_register_time"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block my_film_base_script %}
+<script>
+    var film_id = "{{film_id}}"
+</script>
+<script src="/film_system-me/static/js/china.js"></script>
+<script src="/film_system-me/static/js/film_user_analysis.js"></script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'film_base.html' %}
+{% block my_film_base_style %}
+<style>
+    .film_user_analysis {
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-6 {
+        height: 500px;
+        width: 50%;
+    }
+
+
+    #film_user_rating {
+        height: 410px;
+        width: 100%;
+    }
+
+    #film_user_rating_area {
+        height: 800px;
+        width: 100%;
+    }
+
+    #keywords_cloud {
+        height: 200px;
+        width: 100%;
+    }
+
+    p.lead {
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+{% block my_film_base_body %}
+<div class="row film_user_analysis">
+
+    <div class="w-100">
+        <div id="film_user_rating"></div>
+    </div>
+    <div class="w-100">
+        <div id="keywords_cloud"></div>
+    </div>
+    <div class="w-100">
+        <div id="film_user_rating_area"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block my_film_base_script %}
+<script>
+    var film_id = "{{film_id}}"
+</script>
+<script src="/film_system-me/static/js/china.js"></script>
+<script src="/film_system-me/static/js/wordcloud2.js"></script>
+<script src="/film_system-me/static/js/film_comment_analysis.js"></script>
+{% endblock %}

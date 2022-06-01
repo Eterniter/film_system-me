@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block my_style %}
+<style>
+    body {
+        background-color: rgb(240, 240, 240);
+    }
+</style>
+    {% block my_film_base_style %}
+
+    {% endblock %}
+{% endblock %}
+
+{% block my_body %}
+<div class="col-3 pr-0">
+    <div class="card border-dark">
+        <img src="{{ film_poster }}" class="card-img-top" alt="{{film_name | safe}}">
+        <div class="card-body">
+            <h5 class="card-title">{{film_name}}</h5>
+            <a href="/film/introduction?film_id={{ film_id | safe }}"
+                class="btn btn-outline-secondary w-100 ">电影详情</a>
+            <a href="/film/user_analysis?film_id={{ film_id | safe }}"
+                class="btn btn-outline-secondary w-100 my-1">影评用户分析</a>
+            <a href="/film/comment_analysis?film_id={{ film_id | safe }}"
+                class="btn btn-outline-secondary w-100 my-1">影评分析</a>
+        </div>
+    </div>
+</div>
+<div class="col-9 border border-dark ">
+    {% block my_film_base_body %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+
+{% block my_script %}
+<script src="/film_system-me/static/js/echarts.js"></script>
+<script src="/film_system-me/static//js/film_base.js"></script>
+    {% block my_film_base_script %}
+
+    {% endblock %}
+{% endblock %}

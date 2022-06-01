@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block my_style %}
+<style>
+    .element_remove {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-duration: var(--animate-duration);
+        animation-duration: var(--animate-duration);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        animation-name: zoomOut;
+    }
+
+    .element_add {
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-duration: var(--animate-duration);
+        animation-duration: var(--animate-duration);
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        animation-name: zoomIn;
+    }
+
+    #film_type {
+        height: 600px;
+        ;
+        width: 100%;
+    }
+</style>
+{% endblock %}
+
+{% block my_body %}
+<div class="w-100">
+    <div class="input-group my-3 w-25 mx-auto">
+        <div class="input-group-prepend">
+            <label class="input-group-text" for="select_area">省份/市</label>
+        </div>
+        <select class="custom-select" id="select_area">
+        </select>
+    </div>
+</div>
+<div class="col-6">
+    <div id="film_type">
+    </div>
+</div>
+<div class="col-6">
+    <div class="lead"></div>
+    <div class="row" id="preference_film"></div>
+</div>
+
+{% endblock %}
+
+{% block my_script %}
+<script src="/film_system-me/static/js/echarts.js"></script>
+<script src="/film_system-me/static/js/preference.js"></script>
+{% endblock %}

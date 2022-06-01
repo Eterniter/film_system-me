@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+{% block my_style %}
+<style>
+    .list-active {
+        background-color: rgb(81, 164, 215);
+        color: white;
+    }
+
+    .list-inline-item:hover {
+        cursor: pointer;
+    }
+
+    .list-inline-item:not(.list-active):hover {
+        cursor: pointer;
+        color: rgb(81, 164, 215);
+    }
+</style>
+{% endblock %}
+
+{% block my_body %}
+<div class="col-8 my-2 offset-1">
+    <ul id="film_type" class="list-inline">
+        <li class="list-inline-item">全部类型</li>
+        <li class="list-inline-item">剧情</li>
+        <li class="list-inline-item">喜剧</li>
+        <li class="list-inline-item">动作</li>
+        <li class="list-inline-item">爱情</li>
+        <li class="list-inline-item">科幻</li>
+        <li class="list-inline-item">动画</li>
+        <li class="list-inline-item">悬疑</li>
+        <li class="list-inline-item">惊悚</li>
+        <li class="list-inline-item">恐怖</li>
+        <li class="list-inline-item">犯罪</li>
+        <li class="list-inline-item">同性</li>
+        <li class="list-inline-item">音乐</li>
+        <li class="list-inline-item">歌舞</li>
+        <li class="list-inline-item">传记</li>
+        <li class="list-inline-item">历史</li>
+        <li class="list-inline-item">战争</li>
+        <li class="list-inline-item">西部</li>
+        <li class="list-inline-item">奇幻</li>
+        <li class="list-inline-item">冒险</li>
+        <li class="list-inline-item">灾难</li>
+        <li class="list-inline-item">武侠</li>
+    </ul>
+</div>
+<div class="col-8 my-2 offset-1">
+    <ul id="film_producer" class="list-inline">
+        <li class="list-inline-item">全部地区</li>
+        <li class="list-inline-item">中国</li>
+        <li class="list-inline-item">欧美</li>
+        <li class="list-inline-item">美国</li>
+        <li class="list-inline-item">日本</li>
+        <li class="list-inline-item">韩国</li>
+        <li class="list-inline-item">英国</li>
+        <li class="list-inline-item">法国</li>
+        <li class="list-inline-item">德国</li>
+        <li class="list-inline-item">意大利</li>
+        <li class="list-inline-item">西班牙</li>
+        <li class="list-inline-item">印度</li>
+        <li class="list-inline-item">泰国</li>
+        <li class="list-inline-item">俄罗斯</li>
+        <li class="list-inline-item">伊朗</li>
+        <li class="list-inline-item">加拿大</li>
+        <li class="list-inline-item">澳大利亚</li>
+        <li class="list-inline-item">爱尔兰</li>
+        <li class="list-inline-item">瑞典</li>
+        <li class="list-inline-item">巴西</li>
+        <li class="list-inline-item">丹麦</li>
+    </ul>
+</div>
+
+<div id="showcase" class="col-12 row">
+
+</div>
+<div class="col-8 offset-4 d-none">
+    <p class="text-muted h3" class="display-4">当前筛选没有找到结果</p>
+</div>
+<div id="Pagination" class="col-12">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+        </ul>
+    </nav>
+</div>
+{% endblock %}
+
+{% block my_script %}
+<script>
+    var data = {{ data | tojson }};
+    var page_num = {{ page_num }};
+    var current_page = {{ current_page }};
+    var current_film_type = "{{ film_type }}" || "全部类型";
+    var current_film_producer = "{{ film_producer }}" || "全部地区";
+</script>
+<script src="/film_system-me/static/js/category.js"></script>
+{% endblock %}
