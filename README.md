@@ -33,7 +33,7 @@
 2. 运行[film_system.sql](https://github.com/Eterniter/film_system-me/blob/main/film_system.sql)创建数据库。
 3. 在[mysql_query.py](https://github.com/Eterniter/film_system-me/blob/main/mysql_query.py)文件中配置好连接数据库的信息。
 4. 运行[app.py](https://github.com/Eterniter/film_system-me/blob/main/app.py)文件
-5. 如果开启了爬虫，第一次运行需要微信扫码登录获取[Cookie](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)，需要确保谷歌浏览器版本与[chromedriver](http://chromedriver.storage.googleapis.com/index.html)版本是否适配。
+5. 如果开启了爬虫，第一次运行需要微信扫码登录获取[Cookie](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies)，务必确保谷歌浏览器版本与[chromedriver](http://chromedriver.storage.googleapis.com/index.html)版本适配。
 ## 运行
 [演示视频](https://www.bilibili.com/video/BV1Hg411R76w?spm_id_from=333.999.0.0)
 ## 证书
